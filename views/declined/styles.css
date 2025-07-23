@@ -1,0 +1,21 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 50px;
+}
+
+.card-confirmation {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.icon-check {
+    width: 40px;
+    height: 40px;
+}
+
+.bancolombia-logo {
+    width: 200px;
+    height: auto;
+}

@@ -2,38 +2,40 @@
 
 namespace InformationCompra;
 
-require_once 'vendor/autoload.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $producto = isset($_POST['producto']) ? sanitizeInput($_POST['producto']) : '';
-    $cantidad = isset($_POST['cantidad']) ? sanitizeInput($_POST['cantidad']) : '';
-    $precio = isset($_POST['precio']) ? sanitizeInput($_POST['precio']) : '';
-}
-
-function sanitizeInput($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-
-    return $data;
-}
-
 class InformationCompra
 {
     private $producto;
     private $cantidad;
     private $precio;
 
-    public function __construct($producto, $cantidad, $precio)
+    public function __construct()
     {
-        $this->producto = $producto;
-        $this->cantidad = $cantidad;
-        $this->precio = $precio;
+        $this->producto = isset($_POST['producto']) ? $this->sanitizeInput($_POST['producto']) : '';
+        $this->cantidad = isset($_POST['cantidad']) ? (int)$this->sanitizeInput($_POST['cantidad']) : 0;
+        $this->precio = isset($_POST['precio']) ? (float)$this->sanitizeInput($_POST['precio']) : 0;
+    }
+
+    private function sanitizeInput($data)
+    {
+        return htmlspecialchars(stripslashes(trim($data)));
     }
 
     public function getTotal()
     {
         return $this->cantidad * $this->precio;
+    }
+
+
+    public function getProducto()
+    {
+        return $this->producto;
+    }
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+    public function getPrecio()
+    {
+        return $this->precio;
     }
 }
