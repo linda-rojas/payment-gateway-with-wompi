@@ -35,5 +35,5 @@ $signature = hash('sha256', $string_to_sign);
     data-amount-in-cents="<?= $totalAmount ?>"
     data-reference="<?= $reference ?>"
     data-signature:integrity="<?= $signature ?>"
-    data-redirect-url="http://localhost:8000/"></script>
+    data-redirect-url="http://localhost:8000/processPayment.php"></script>
 </form>
