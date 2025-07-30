@@ -16,6 +16,12 @@ COPY . /var/www/html/
 # Reemplazar las variables de entorno en el archivo .env usando envsubst
 RUN envsubst < /var/www/html/.env.template > /var/www/html/.env
 
+# Instalar dependencias de Composer
+# Primero instalar las dependencias del sistema necesarias para Composer, como herramientas de compilación
+RUN apt-get install -y libzip-dev git && \
+    docker-php-ext-install zip && \
+    apt-get clean
+
 # Ejecutar composer install para instalar las dependencias PHP
 RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
 
